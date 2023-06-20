@@ -1,0 +1,1203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AGE" Type="int" Nullable="false" />
+          <Property Name="ADDRESS" Type="char" MaxLength="25" />
+          <Property Name="SALARY" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="delete_employee">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="int" Nullable="false" />
+          <Property Name="employee_number" Type="int" />
+        </EntityType>
+        <EntityType Name="delete_SystemUser">
+          <Key>
+            <PropertyRef Name="manager_number" />
+          </Key>
+          <Property Name="manager_number" Type="int" Nullable="false" />
+          <Property Name="employee_number" Type="int" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="dnumber" />
+          </Key>
+          <Property Name="dname" Type="varchar" MaxLength="15" />
+          <Property Name="dnumber" Type="int" Nullable="false" />
+          <Property Name="mgr_ssn" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="mgr_start_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctorid" />
+          </Key>
+          <Property Name="Doctorid" Type="int" Nullable="false" />
+          <Property Name="DoctorNAME" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="speciality" Type="char" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_number" />
+          </Key>
+          <Property Name="employee_name" Type="varchar" MaxLength="25" />
+          <Property Name="employee_number" Type="int" Nullable="false" />
+          <Property Name="employee_location" Type="varchar" MaxLength="25" />
+          <Property Name="salary" Type="int" />
+          <Property Name="employee_position" Type="varchar" MaxLength="25" />
+          <Property Name="employee_status" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="employes">
+          <Key>
+            <PropertyRef Name="ssn" />
+          </Key>
+          <Property Name="fname" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="minit" Type="char" MaxLength="2" />
+          <Property Name="lname" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ssn" Type="char" MaxLength="19" Nullable="false" />
+          <Property Name="bdate" Type="date" />
+          <Property Name="address" Type="varchar" MaxLength="4" />
+          <Property Name="sex" Type="char" MaxLength="1" />
+          <Property Name="salary" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="super_ssn" Type="char" MaxLength="9" />
+          <Property Name="dno" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'master.dbo.loggedin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="loggedin">
+          <Property Name="id" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="25" />
+          <Property Name="pass" Type="varchar" MaxLength="25" />
+          <Property Name="date_login" Type="date" />
+        </EntityType>-->
+        <EntityType Name="manage_employee_salary">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="int" Nullable="false" />
+          <Property Name="employee_num" Type="int" />
+          <Property Name="employee_new_salary" Type="int" />
+        </EntityType>
+        <EntityType Name="manage_employee_status">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="int" Nullable="false" />
+          <Property Name="employee_num" Type="int" />
+          <Property Name="employee_new_status" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="manage_manager_status">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="int" Nullable="false" />
+          <Property Name="manager_number" Type="int" />
+          <Property Name="manager_new_status" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="manager_number" />
+          </Key>
+          <Property Name="manager_name" Type="varchar" MaxLength="255" />
+          <Property Name="manager_password" Type="varchar" MaxLength="20" />
+          <Property Name="manager_status" Type="varchar" MaxLength="10" />
+          <Property Name="manager_number" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSreplication_options">
+          <Key>
+            <PropertyRef Name="optname" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="major_version" />
+            <PropertyRef Name="minor_version" />
+            <PropertyRef Name="revision" />
+            <PropertyRef Name="install_failures" />
+          </Key>
+          <Property Name="optname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="value" Type="bit" Nullable="false" />
+          <Property Name="major_version" Type="int" Nullable="false" />
+          <Property Name="minor_version" Type="int" Nullable="false" />
+          <Property Name="revision" Type="int" Nullable="false" />
+          <Property Name="install_failures" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="spt_fallback_db">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="dbid" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="version" />
+          </Key>
+          <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+          <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+          <Property Name="xfallback_dbid" Type="smallint" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dbid" Type="smallint" Nullable="false" />
+          <Property Name="status" Type="smallint" Nullable="false" />
+          <Property Name="version" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="spt_fallback_dev">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="low" />
+            <PropertyRef Name="high" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="phyname" />
+          </Key>
+          <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+          <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+          <Property Name="xfallback_low" Type="int" />
+          <Property Name="xfallback_drive" Type="char" MaxLength="2" />
+          <Property Name="low" Type="int" Nullable="false" />
+          <Property Name="high" Type="int" Nullable="false" />
+          <Property Name="status" Type="smallint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="phyname" Type="varchar" MaxLength="127" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="spt_fallback_usg">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="dbid" />
+            <PropertyRef Name="segmap" />
+            <PropertyRef Name="lstart" />
+            <PropertyRef Name="sizepg" />
+            <PropertyRef Name="vstart" />
+          </Key>
+          <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+          <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+          <Property Name="xfallback_vstart" Type="int" />
+          <Property Name="dbid" Type="smallint" Nullable="false" />
+          <Property Name="segmap" Type="int" Nullable="false" />
+          <Property Name="lstart" Type="int" Nullable="false" />
+          <Property Name="sizepg" Type="int" Nullable="false" />
+          <Property Name="vstart" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="spt_monitor">
+          <Key>
+            <PropertyRef Name="lastrun" />
+            <PropertyRef Name="cpu_busy" />
+            <PropertyRef Name="io_busy" />
+            <PropertyRef Name="idle" />
+            <PropertyRef Name="pack_received" />
+            <PropertyRef Name="pack_sent" />
+            <PropertyRef Name="connections" />
+            <PropertyRef Name="pack_errors" />
+            <PropertyRef Name="total_read" />
+            <PropertyRef Name="total_write" />
+            <PropertyRef Name="total_errors" />
+          </Key>
+          <Property Name="lastrun" Type="datetime" Nullable="false" />
+          <Property Name="cpu_busy" Type="int" Nullable="false" />
+          <Property Name="io_busy" Type="int" Nullable="false" />
+          <Property Name="idle" Type="int" Nullable="false" />
+          <Property Name="pack_received" Type="int" Nullable="false" />
+          <Property Name="pack_sent" Type="int" Nullable="false" />
+          <Property Name="connections" Type="int" Nullable="false" />
+          <Property Name="pack_errors" Type="int" Nullable="false" />
+          <Property Name="total_read" Type="int" Nullable="false" />
+          <Property Name="total_write" Type="int" Nullable="false" />
+          <Property Name="total_errors" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="superadmin">
+          <Key>
+            <PropertyRef Name="admin_number" />
+          </Key>
+          <Property Name="admin_name" Type="varchar" MaxLength="255" />
+          <Property Name="admin_password" Type="varchar" MaxLength="20" />
+          <Property Name="admin_status" Type="varchar" MaxLength="10" />
+          <Property Name="admin_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="systemUser">
+          <Key>
+            <PropertyRef Name="user_number" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="user_password" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="phone" Type="char" MaxLength="10" />
+          <Property Name="user_number" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="spt_values">
+          <Key>
+            <PropertyRef Name="number" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="35" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="low" Type="int" />
+          <Property Name="high" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <Association Name="FK__delete_em__admin__73DA2C14">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="delete_employee" Type="Self.delete_employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="delete_employee">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_em__emplo__74CE504D">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="delete_employee" Type="Self.delete_employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_employee">
+              <PropertyRef Name="employee_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_Sy__emplo__789EE131">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="delete_SystemUser" Type="Self.delete_SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_SystemUser">
+              <PropertyRef Name="employee_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_Sy__manag__77AABCF8">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="delete_SystemUser" Type="Self.delete_SystemUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_SystemUser">
+              <PropertyRef Name="manager_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'master.dbo.loggedin' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__loggedin__id__658C0CBD" />-->
+        <Association Name="FK__manage_em__admin__68687968">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_employee_status" Type="Self.manage_employee_status" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_employee_status">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__admin__6C390A4C">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_employee_salary" Type="Self.manage_employee_salary" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_employee_salary">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__emplo__695C9DA1">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="manage_employee_status" Type="Self.manage_employee_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_number" />
+            </Principal>
+            <Dependent Role="manage_employee_status">
+              <PropertyRef Name="employee_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__emplo__6D2D2E85">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="manage_employee_salary" Type="Self.manage_employee_salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_number" />
+            </Principal>
+            <Dependent Role="manage_employee_salary">
+              <PropertyRef Name="employee_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_ma__admin__70099B30">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_manager_status" Type="Self.manage_manager_status" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_manager_status">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_ma__manag__70FDBF69">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="manage_manager_status" Type="Self.manage_manager_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="manage_manager_status">
+              <PropertyRef Name="manager_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="delete_employee" EntityType="Self.delete_employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="delete_SystemUser" EntityType="Self.delete_SystemUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employes" EntityType="Self.employes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manage_employee_salary" EntityType="Self.manage_employee_salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manage_employee_status" EntityType="Self.manage_employee_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manage_manager_status" EntityType="Self.manage_manager_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manager" EntityType="Self.manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="superadmin" EntityType="Self.superadmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="systemUser" EntityType="Self.systemUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSreplication_options].[optname] AS [optname], 
+    [MSreplication_options].[value] AS [value], 
+    [MSreplication_options].[major_version] AS [major_version], 
+    [MSreplication_options].[minor_version] AS [minor_version], 
+    [MSreplication_options].[revision] AS [revision], 
+    [MSreplication_options].[install_failures] AS [install_failures]
+    FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [spt_fallback_db].[xserver_name] AS [xserver_name], 
+    [spt_fallback_db].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_db].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_db].[xfallback_dbid] AS [xfallback_dbid], 
+    [spt_fallback_db].[name] AS [name], 
+    [spt_fallback_db].[dbid] AS [dbid], 
+    [spt_fallback_db].[status] AS [status], 
+    [spt_fallback_db].[version] AS [version]
+    FROM [dbo].[spt_fallback_db] AS [spt_fallback_db]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [spt_fallback_dev].[xserver_name] AS [xserver_name], 
+    [spt_fallback_dev].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_dev].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_dev].[xfallback_low] AS [xfallback_low], 
+    [spt_fallback_dev].[xfallback_drive] AS [xfallback_drive], 
+    [spt_fallback_dev].[low] AS [low], 
+    [spt_fallback_dev].[high] AS [high], 
+    [spt_fallback_dev].[status] AS [status], 
+    [spt_fallback_dev].[name] AS [name], 
+    [spt_fallback_dev].[phyname] AS [phyname]
+    FROM [dbo].[spt_fallback_dev] AS [spt_fallback_dev]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [spt_fallback_usg].[xserver_name] AS [xserver_name], 
+    [spt_fallback_usg].[xdttm_ins] AS [xdttm_ins], 
+    [spt_fallback_usg].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+    [spt_fallback_usg].[xfallback_vstart] AS [xfallback_vstart], 
+    [spt_fallback_usg].[dbid] AS [dbid], 
+    [spt_fallback_usg].[segmap] AS [segmap], 
+    [spt_fallback_usg].[lstart] AS [lstart], 
+    [spt_fallback_usg].[sizepg] AS [sizepg], 
+    [spt_fallback_usg].[vstart] AS [vstart]
+    FROM [dbo].[spt_fallback_usg] AS [spt_fallback_usg]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [spt_monitor].[lastrun] AS [lastrun], 
+    [spt_monitor].[cpu_busy] AS [cpu_busy], 
+    [spt_monitor].[io_busy] AS [io_busy], 
+    [spt_monitor].[idle] AS [idle], 
+    [spt_monitor].[pack_received] AS [pack_received], 
+    [spt_monitor].[pack_sent] AS [pack_sent], 
+    [spt_monitor].[connections] AS [connections], 
+    [spt_monitor].[pack_errors] AS [pack_errors], 
+    [spt_monitor].[total_read] AS [total_read], 
+    [spt_monitor].[total_write] AS [total_write], 
+    [spt_monitor].[total_errors] AS [total_errors]
+    FROM [dbo].[spt_monitor] AS [spt_monitor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="spt_values" EntityType="Self.spt_values" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [spt_values].[name] AS [name], 
+    [spt_values].[number] AS [number], 
+    [spt_values].[type] AS [type], 
+    [spt_values].[low] AS [low], 
+    [spt_values].[high] AS [high], 
+    [spt_values].[status] AS [status]
+    FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__delete_em__admin__73DA2C14" Association="Self.FK__delete_em__admin__73DA2C14">
+            <End Role="superadmin" EntitySet="superadmin" />
+            <End Role="delete_employee" EntitySet="delete_employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_em__emplo__74CE504D" Association="Self.FK__delete_em__emplo__74CE504D">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="delete_employee" EntitySet="delete_employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_Sy__emplo__789EE131" Association="Self.FK__delete_Sy__emplo__789EE131">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="delete_SystemUser" EntitySet="delete_SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_Sy__manag__77AABCF8" Association="Self.FK__delete_Sy__manag__77AABCF8">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="delete_SystemUser" EntitySet="delete_SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__admin__68687968" Association="Self.FK__manage_em__admin__68687968">
+            <End Role="superadmin" EntitySet="superadmin" />
+            <End Role="manage_employee_status" EntitySet="manage_employee_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__admin__6C390A4C" Association="Self.FK__manage_em__admin__6C390A4C">
+            <End Role="superadmin" EntitySet="superadmin" />
+            <End Role="manage_employee_salary" EntitySet="manage_employee_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__emplo__695C9DA1" Association="Self.FK__manage_em__emplo__695C9DA1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="manage_employee_status" EntitySet="manage_employee_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__emplo__6D2D2E85" Association="Self.FK__manage_em__emplo__6D2D2E85">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="manage_employee_salary" EntitySet="manage_employee_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_ma__admin__70099B30" Association="Self.FK__manage_ma__admin__70099B30">
+            <End Role="superadmin" EntitySet="superadmin" />
+            <End Role="manage_manager_status" EntitySet="manage_manager_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_ma__manag__70FDBF69" Association="Self.FK__manage_ma__manag__70FDBF69">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="manage_manager_status" EntitySet="manage_manager_status" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AGE" Type="Int32" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="SALARY" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="delete_employee">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="Int32" Nullable="false" />
+          <Property Name="employee_number" Type="Int32" />
+          <NavigationProperty Name="superadmin" Relationship="Self.FK__delete_em__admin__73DA2C14" FromRole="delete_employee" ToRole="superadmin" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__delete_em__emplo__74CE504D" FromRole="delete_employee" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="delete_SystemUser">
+          <Key>
+            <PropertyRef Name="manager_number" />
+          </Key>
+          <Property Name="manager_number" Type="Int32" Nullable="false" />
+          <Property Name="employee_number" Type="Int32" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__delete_Sy__emplo__789EE131" FromRole="delete_SystemUser" ToRole="manager" />
+          <NavigationProperty Name="manager1" Relationship="Self.FK__delete_Sy__manag__77AABCF8" FromRole="delete_SystemUser" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="dnumber" />
+          </Key>
+          <Property Name="dname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dnumber" Type="Int32" Nullable="false" />
+          <Property Name="mgr_ssn" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="mgr_start_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctorid" />
+          </Key>
+          <Property Name="Doctorid" Type="Int32" Nullable="false" />
+          <Property Name="DoctorNAME" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="speciality" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_number" />
+          </Key>
+          <Property Name="employee_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="employee_number" Type="Int32" Nullable="false" />
+          <Property Name="employee_location" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="employee_position" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="employee_status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manage_employee_status" Relationship="Self.FK__manage_em__emplo__695C9DA1" FromRole="employee" ToRole="manage_employee_status" />
+          <NavigationProperty Name="manage_employee_salary" Relationship="Self.FK__manage_em__emplo__6D2D2E85" FromRole="employee" ToRole="manage_employee_salary" />
+        </EntityType>
+        <EntityType Name="employe">
+          <Key>
+            <PropertyRef Name="ssn" />
+          </Key>
+          <Property Name="fname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="minit" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ssn" Type="String" MaxLength="19" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="bdate" Type="DateTime" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="salary" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="super_ssn" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="dno" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manage_employee_salary">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="Int32" Nullable="false" />
+          <Property Name="employee_num" Type="Int32" />
+          <Property Name="employee_new_salary" Type="Int32" />
+          <NavigationProperty Name="employee" Relationship="Self.FK__manage_em__emplo__6D2D2E85" FromRole="manage_employee_salary" ToRole="employee" />
+          <NavigationProperty Name="superadmin" Relationship="Self.FK__manage_em__admin__6C390A4C" FromRole="manage_employee_salary" ToRole="superadmin" />
+        </EntityType>
+        <EntityType Name="manage_employee_status">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="Int32" Nullable="false" />
+          <Property Name="employee_num" Type="Int32" />
+          <Property Name="employee_new_status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employee" Relationship="Self.FK__manage_em__emplo__695C9DA1" FromRole="manage_employee_status" ToRole="employee" />
+          <NavigationProperty Name="superadmin" Relationship="Self.FK__manage_em__admin__68687968" FromRole="manage_employee_status" ToRole="superadmin" />
+        </EntityType>
+        <EntityType Name="manage_manager_status">
+          <Key>
+            <PropertyRef Name="admin_num" />
+          </Key>
+          <Property Name="admin_num" Type="Int32" Nullable="false" />
+          <Property Name="manager_number" Type="Int32" />
+          <Property Name="manager_new_status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="superadmin" Relationship="Self.FK__manage_ma__admin__70099B30" FromRole="manage_manager_status" ToRole="superadmin" />
+          <NavigationProperty Name="manager" Relationship="Self.FK__manage_ma__manag__70FDBF69" FromRole="manage_manager_status" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="manager_number" />
+          </Key>
+          <Property Name="manager_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="manager_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="manager_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="manager_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="delete_employee" Relationship="Self.FK__delete_em__emplo__74CE504D" FromRole="manager" ToRole="delete_employee" />
+          <NavigationProperty Name="delete_SystemUser" Relationship="Self.FK__delete_Sy__emplo__789EE131" FromRole="manager" ToRole="delete_SystemUser" />
+          <NavigationProperty Name="delete_SystemUser1" Relationship="Self.FK__delete_Sy__manag__77AABCF8" FromRole="manager" ToRole="delete_SystemUser" />
+          <NavigationProperty Name="manage_manager_status" Relationship="Self.FK__manage_ma__manag__70FDBF69" FromRole="manager" ToRole="manage_manager_status" />
+        </EntityType>
+        <EntityType Name="superadmin">
+          <Key>
+            <PropertyRef Name="admin_number" />
+          </Key>
+          <Property Name="admin_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="admin_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="admin_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="admin_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="delete_employee" Relationship="Self.FK__delete_em__admin__73DA2C14" FromRole="superadmin" ToRole="delete_employee" />
+          <NavigationProperty Name="manage_employee_salary" Relationship="Self.FK__manage_em__admin__6C390A4C" FromRole="superadmin" ToRole="manage_employee_salary" />
+          <NavigationProperty Name="manage_employee_status" Relationship="Self.FK__manage_em__admin__68687968" FromRole="superadmin" ToRole="manage_employee_status" />
+          <NavigationProperty Name="manage_manager_status" Relationship="Self.FK__manage_ma__admin__70099B30" FromRole="superadmin" ToRole="manage_manager_status" />
+        </EntityType>
+        <EntityType Name="systemUser">
+          <Key>
+            <PropertyRef Name="user_number" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="user_number" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSreplication_options">
+          <Key>
+            <PropertyRef Name="optname" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="major_version" />
+            <PropertyRef Name="minor_version" />
+            <PropertyRef Name="revision" />
+            <PropertyRef Name="install_failures" />
+          </Key>
+          <Property Name="optname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="Boolean" Nullable="false" />
+          <Property Name="major_version" Type="Int32" Nullable="false" />
+          <Property Name="minor_version" Type="Int32" Nullable="false" />
+          <Property Name="revision" Type="Int32" Nullable="false" />
+          <Property Name="install_failures" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spt_fallback_db">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="dbid" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="version" />
+          </Key>
+          <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xfallback_dbid" Type="Int16" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dbid" Type="Int16" Nullable="false" />
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="version" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spt_fallback_dev">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="low" />
+            <PropertyRef Name="high" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="phyname" />
+          </Key>
+          <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xfallback_low" Type="Int32" />
+          <Property Name="xfallback_drive" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="low" Type="Int32" Nullable="false" />
+          <Property Name="high" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phyname" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spt_fallback_usg">
+          <Key>
+            <PropertyRef Name="xserver_name" />
+            <PropertyRef Name="xdttm_ins" />
+            <PropertyRef Name="xdttm_last_ins_upd" />
+            <PropertyRef Name="dbid" />
+            <PropertyRef Name="segmap" />
+            <PropertyRef Name="lstart" />
+            <PropertyRef Name="sizepg" />
+            <PropertyRef Name="vstart" />
+          </Key>
+          <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="xfallback_vstart" Type="Int32" />
+          <Property Name="dbid" Type="Int16" Nullable="false" />
+          <Property Name="segmap" Type="Int32" Nullable="false" />
+          <Property Name="lstart" Type="Int32" Nullable="false" />
+          <Property Name="sizepg" Type="Int32" Nullable="false" />
+          <Property Name="vstart" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spt_monitor">
+          <Key>
+            <PropertyRef Name="lastrun" />
+            <PropertyRef Name="cpu_busy" />
+            <PropertyRef Name="io_busy" />
+            <PropertyRef Name="idle" />
+            <PropertyRef Name="pack_received" />
+            <PropertyRef Name="pack_sent" />
+            <PropertyRef Name="connections" />
+            <PropertyRef Name="pack_errors" />
+            <PropertyRef Name="total_read" />
+            <PropertyRef Name="total_write" />
+            <PropertyRef Name="total_errors" />
+          </Key>
+          <Property Name="lastrun" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cpu_busy" Type="Int32" Nullable="false" />
+          <Property Name="io_busy" Type="Int32" Nullable="false" />
+          <Property Name="idle" Type="Int32" Nullable="false" />
+          <Property Name="pack_received" Type="Int32" Nullable="false" />
+          <Property Name="pack_sent" Type="Int32" Nullable="false" />
+          <Property Name="connections" Type="Int32" Nullable="false" />
+          <Property Name="pack_errors" Type="Int32" Nullable="false" />
+          <Property Name="total_read" Type="Int32" Nullable="false" />
+          <Property Name="total_write" Type="Int32" Nullable="false" />
+          <Property Name="total_errors" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spt_values">
+          <Key>
+            <PropertyRef Name="number" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="low" Type="Int32" />
+          <Property Name="high" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__delete_em__admin__73DA2C14">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="delete_employee" Type="Self.delete_employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="delete_employee">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_em__emplo__74CE504D">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="delete_employee" Type="Self.delete_employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_employee">
+              <PropertyRef Name="employee_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_Sy__emplo__789EE131">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="delete_SystemUser" Type="Self.delete_SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_SystemUser">
+              <PropertyRef Name="employee_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delete_Sy__manag__77AABCF8">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="delete_SystemUser" Type="Self.delete_SystemUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="delete_SystemUser">
+              <PropertyRef Name="manager_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__emplo__695C9DA1">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="manage_employee_status" Type="Self.manage_employee_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_number" />
+            </Principal>
+            <Dependent Role="manage_employee_status">
+              <PropertyRef Name="employee_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__emplo__6D2D2E85">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="manage_employee_salary" Type="Self.manage_employee_salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_number" />
+            </Principal>
+            <Dependent Role="manage_employee_salary">
+              <PropertyRef Name="employee_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__admin__6C390A4C">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_employee_salary" Type="Self.manage_employee_salary" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_employee_salary">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_em__admin__68687968">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_employee_status" Type="Self.manage_employee_status" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_employee_status">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_ma__admin__70099B30">
+          <End Role="superadmin" Type="Self.superadmin" Multiplicity="1" />
+          <End Role="manage_manager_status" Type="Self.manage_manager_status" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="superadmin">
+              <PropertyRef Name="admin_number" />
+            </Principal>
+            <Dependent Role="manage_manager_status">
+              <PropertyRef Name="admin_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__manage_ma__manag__70FDBF69">
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <End Role="manage_manager_status" Type="Self.manage_manager_status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="manager_number" />
+            </Principal>
+            <Dependent Role="manage_manager_status">
+              <PropertyRef Name="manager_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="delete_employee" EntityType="Self.delete_employee" />
+          <EntitySet Name="delete_SystemUser" EntityType="Self.delete_SystemUser" />
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="employes" EntityType="Self.employe" />
+          <EntitySet Name="manage_employee_salary" EntityType="Self.manage_employee_salary" />
+          <EntitySet Name="manage_employee_status" EntityType="Self.manage_employee_status" />
+          <EntitySet Name="manage_manager_status" EntityType="Self.manage_manager_status" />
+          <EntitySet Name="managers" EntityType="Self.manager" />
+          <EntitySet Name="superadmins" EntityType="Self.superadmin" />
+          <EntitySet Name="systemUsers" EntityType="Self.systemUser" />
+          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" />
+          <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" />
+          <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" />
+          <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" />
+          <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" />
+          <EntitySet Name="spt_values" EntityType="Self.spt_values" />
+          <AssociationSet Name="FK__delete_em__admin__73DA2C14" Association="Self.FK__delete_em__admin__73DA2C14">
+            <End Role="superadmin" EntitySet="superadmins" />
+            <End Role="delete_employee" EntitySet="delete_employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_em__emplo__74CE504D" Association="Self.FK__delete_em__emplo__74CE504D">
+            <End Role="manager" EntitySet="managers" />
+            <End Role="delete_employee" EntitySet="delete_employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_Sy__emplo__789EE131" Association="Self.FK__delete_Sy__emplo__789EE131">
+            <End Role="manager" EntitySet="managers" />
+            <End Role="delete_SystemUser" EntitySet="delete_SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delete_Sy__manag__77AABCF8" Association="Self.FK__delete_Sy__manag__77AABCF8">
+            <End Role="manager" EntitySet="managers" />
+            <End Role="delete_SystemUser" EntitySet="delete_SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__emplo__695C9DA1" Association="Self.FK__manage_em__emplo__695C9DA1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="manage_employee_status" EntitySet="manage_employee_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__emplo__6D2D2E85" Association="Self.FK__manage_em__emplo__6D2D2E85">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="manage_employee_salary" EntitySet="manage_employee_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__admin__6C390A4C" Association="Self.FK__manage_em__admin__6C390A4C">
+            <End Role="superadmin" EntitySet="superadmins" />
+            <End Role="manage_employee_salary" EntitySet="manage_employee_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_em__admin__68687968" Association="Self.FK__manage_em__admin__68687968">
+            <End Role="superadmin" EntitySet="superadmins" />
+            <End Role="manage_employee_status" EntitySet="manage_employee_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_ma__admin__70099B30" Association="Self.FK__manage_ma__admin__70099B30">
+            <End Role="superadmin" EntitySet="superadmins" />
+            <End Role="manage_manager_status" EntitySet="manage_manager_status" />
+          </AssociationSet>
+          <AssociationSet Name="FK__manage_ma__manag__70FDBF69" Association="Self.FK__manage_ma__manag__70FDBF69">
+            <End Role="manager" EntitySet="managers" />
+            <End Role="manage_manager_status" EntitySet="manage_manager_status" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="masterModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="delete_employee">
+            <EntityTypeMapping TypeName="masterModel.delete_employee">
+              <MappingFragment StoreEntitySet="delete_employee">
+                <ScalarProperty Name="admin_num" ColumnName="admin_num" />
+                <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="delete_SystemUser">
+            <EntityTypeMapping TypeName="masterModel.delete_SystemUser">
+              <MappingFragment StoreEntitySet="delete_SystemUser">
+                <ScalarProperty Name="manager_number" ColumnName="manager_number" />
+                <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="masterModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="dname" ColumnName="dname" />
+                <ScalarProperty Name="dnumber" ColumnName="dnumber" />
+                <ScalarProperty Name="mgr_ssn" ColumnName="mgr_ssn" />
+                <ScalarProperty Name="mgr_start_date" ColumnName="mgr_start_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="masterModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Doctorid" ColumnName="Doctorid" />
+                <ScalarProperty Name="DoctorNAME" ColumnName="DoctorNAME" />
+                <ScalarProperty Name="speciality" ColumnName="speciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="masterModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+                <ScalarProperty Name="employee_location" ColumnName="employee_location" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employee_position" ColumnName="employee_position" />
+                <ScalarProperty Name="employee_status" ColumnName="employee_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employes">
+            <EntityTypeMapping TypeName="masterModel.employe">
+              <MappingFragment StoreEntitySet="employes">
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="minit" ColumnName="minit" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="bdate" ColumnName="bdate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="super_ssn" ColumnName="super_ssn" />
+                <ScalarProperty Name="dno" ColumnName="dno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manage_employee_salary">
+            <EntityTypeMapping TypeName="masterModel.manage_employee_salary">
+              <MappingFragment StoreEntitySet="manage_employee_salary">
+                <ScalarProperty Name="admin_num" ColumnName="admin_num" />
+                <ScalarProperty Name="employee_num" ColumnName="employee_num" />
+                <ScalarProperty Name="employee_new_salary" ColumnName="employee_new_salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manage_employee_status">
+            <EntityTypeMapping TypeName="masterModel.manage_employee_status">
+              <MappingFragment StoreEntitySet="manage_employee_status">
+                <ScalarProperty Name="admin_num" ColumnName="admin_num" />
+                <ScalarProperty Name="employee_num" ColumnName="employee_num" />
+                <ScalarProperty Name="employee_new_status" ColumnName="employee_new_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manage_manager_status">
+            <EntityTypeMapping TypeName="masterModel.manage_manager_status">
+              <MappingFragment StoreEntitySet="manage_manager_status">
+                <ScalarProperty Name="admin_num" ColumnName="admin_num" />
+                <ScalarProperty Name="manager_number" ColumnName="manager_number" />
+                <ScalarProperty Name="manager_new_status" ColumnName="manager_new_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managers">
+            <EntityTypeMapping TypeName="masterModel.manager">
+              <MappingFragment StoreEntitySet="manager">
+                <ScalarProperty Name="manager_name" ColumnName="manager_name" />
+                <ScalarProperty Name="manager_password" ColumnName="manager_password" />
+                <ScalarProperty Name="manager_status" ColumnName="manager_status" />
+                <ScalarProperty Name="manager_number" ColumnName="manager_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="superadmins">
+            <EntityTypeMapping TypeName="masterModel.superadmin">
+              <MappingFragment StoreEntitySet="superadmin">
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_status" ColumnName="admin_status" />
+                <ScalarProperty Name="admin_number" ColumnName="admin_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systemUsers">
+            <EntityTypeMapping TypeName="masterModel.systemUser">
+              <MappingFragment StoreEntitySet="systemUser">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="user_number" ColumnName="user_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSreplication_options">
+            <EntityTypeMapping TypeName="masterModel.MSreplication_options">
+              <MappingFragment StoreEntitySet="MSreplication_options">
+                <ScalarProperty Name="optname" ColumnName="optname" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="major_version" ColumnName="major_version" />
+                <ScalarProperty Name="minor_version" ColumnName="minor_version" />
+                <ScalarProperty Name="revision" ColumnName="revision" />
+                <ScalarProperty Name="install_failures" ColumnName="install_failures" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spt_fallback_db">
+            <EntityTypeMapping TypeName="masterModel.spt_fallback_db">
+              <MappingFragment StoreEntitySet="spt_fallback_db">
+                <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+                <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+                <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+                <ScalarProperty Name="xfallback_dbid" ColumnName="xfallback_dbid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dbid" ColumnName="dbid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="version" ColumnName="version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spt_fallback_dev">
+            <EntityTypeMapping TypeName="masterModel.spt_fallback_dev">
+              <MappingFragment StoreEntitySet="spt_fallback_dev">
+                <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+                <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+                <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+                <ScalarProperty Name="xfallback_low" ColumnName="xfallback_low" />
+                <ScalarProperty Name="xfallback_drive" ColumnName="xfallback_drive" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phyname" ColumnName="phyname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spt_fallback_usg">
+            <EntityTypeMapping TypeName="masterModel.spt_fallback_usg">
+              <MappingFragment StoreEntitySet="spt_fallback_usg">
+                <ScalarProperty Name="xserver_name" ColumnName="xserver_name" />
+                <ScalarProperty Name="xdttm_ins" ColumnName="xdttm_ins" />
+                <ScalarProperty Name="xdttm_last_ins_upd" ColumnName="xdttm_last_ins_upd" />
+                <ScalarProperty Name="xfallback_vstart" ColumnName="xfallback_vstart" />
+                <ScalarProperty Name="dbid" ColumnName="dbid" />
+                <ScalarProperty Name="segmap" ColumnName="segmap" />
+                <ScalarProperty Name="lstart" ColumnName="lstart" />
+                <ScalarProperty Name="sizepg" ColumnName="sizepg" />
+                <ScalarProperty Name="vstart" ColumnName="vstart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spt_monitor">
+            <EntityTypeMapping TypeName="masterModel.spt_monitor">
+              <MappingFragment StoreEntitySet="spt_monitor">
+                <ScalarProperty Name="lastrun" ColumnName="lastrun" />
+                <ScalarProperty Name="cpu_busy" ColumnName="cpu_busy" />
+                <ScalarProperty Name="io_busy" ColumnName="io_busy" />
+                <ScalarProperty Name="idle" ColumnName="idle" />
+                <ScalarProperty Name="pack_received" ColumnName="pack_received" />
+                <ScalarProperty Name="pack_sent" ColumnName="pack_sent" />
+                <ScalarProperty Name="connections" ColumnName="connections" />
+                <ScalarProperty Name="pack_errors" ColumnName="pack_errors" />
+                <ScalarProperty Name="total_read" ColumnName="total_read" />
+                <ScalarProperty Name="total_write" ColumnName="total_write" />
+                <ScalarProperty Name="total_errors" ColumnName="total_errors" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spt_values">
+            <EntityTypeMapping TypeName="masterModel.spt_values">
+              <MappingFragment StoreEntitySet="spt_values">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

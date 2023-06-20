@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0a8a8a2350146fdb67553aa0fa762ba" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.CUSTOMER" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.delete_employee" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.delete_SystemUser" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.department" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Doctor" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.employee" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.employe" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.manage_employee_salary" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.manage_employee_status" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.manage_manager_status" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.manager" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.superadmin" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.systemUser" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.MSreplication_options" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_db" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_dev" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_usg" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_monitor" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_values" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="masterModel.FK__delete_em__admin__73DA2C14" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__delete_em__emplo__74CE504D" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__delete_Sy__emplo__789EE131" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__delete_Sy__manag__77AABCF8" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_em__emplo__695C9DA1" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_em__emplo__6D2D2E85" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_em__admin__6C390A4C" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_em__admin__68687968" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_ma__admin__70099B30" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__manage_ma__manag__70FDBF69" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
